@@ -490,7 +490,7 @@ void iniciarJuego(int modo)
            
 
             printf("Jugador %c. Ingresa coordenadas (x,y) para colocar la pieza separadas por una coma. Por ejemplo: 5,5\n", jugadorActual);
-            scanf_s("%d,%d", &x, &y);
+            scanf("%d,%d", &x, &y);
             // Al usuario se le solicitan números comenzando a contar en 1, pero en los arreglos comenzamos desde el 0
             // así que necesitamos restar uno en ambas variables
             x--;
