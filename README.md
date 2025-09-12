@@ -48,5 +48,5 @@ Ideal para aprender lógica de programación, matrices, recursión y toma de dec
 
 1. Clona el repositorio (o copia el archivo `.cpp`):
    ```bash
-  git clone https://github.com/carlonox/Tictactoe-en-CPP.git
-  cd Tictactoe-en-CPP
+    git clone https://github.com/carlonox/Tictactoe-en-CPP.git
+    cd Tictactoe-en-CPP
