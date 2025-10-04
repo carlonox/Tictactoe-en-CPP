@@ -25,6 +25,12 @@ Este proyecto es una versión mejorada del juego Triqui, donde:
   5. 🎯 Elige la esquina superior izquierda (0,0) si está libre.
   6. 🎲 Si todo falla, elige aleatoriamente.
 
+**Mejoras recientes:**
+- 🎯 **Sistema de coordenadas intuitivo**: Coordenadas cartesianas (1,1) = esquina inferior izquierda
+- 🔄 **Manejo de turnos corregido**: El jugador debe ingresar coordenadas válidas antes de pasar el turno
+- 🛡️ **Validación de entradas**: Detección y manejo de entradas inválidas
+- 🐛 **Corrección de errores**: Solución de problemas de recursión y bucles infinitos
+
 Ideal para aprender lógica de programación, matrices, recursión y toma de decisiones en C++.
 
 ---
@@ -50,3 +56,56 @@ Ideal para aprender lógica de programación, matrices, recursión y toma de dec
    ```bash
     git clone https://github.com/carlonox/Tictactoe-en-CPP.git
     cd Tictactoe-en-CPP
+
+2. Compila el programa:
+   ```bash
+   g++ -o tictactoe Cpp-Tictactoe.cpp
+   ```
+
+3. Ejecuta el juego:
+   ```bash
+   ./tictactoe
+   ```
+
+### Cómo jugar
+- El juego mostrará un tablero con coordenadas cartesianas
+- Ingresa las coordenadas como `x,y` donde:
+  - (1,1) es la esquina inferior izquierda
+  - (3,3) es la esquina superior derecha
+- El sistema de dados determina quién empieza
+- La CPU implementa una estrategia avanzada de 6 niveles
+
+---
+
+## 📈 Mejoras Implementadas
+
+### Versión 2.0 - Sistema de Coordenadas Cartesiano
+- Implementación de coordenadas cartesianas intuitivas
+- Corrección del manejo de turnos
+- Validación mejorada de entradas del usuario
+- Corrección de errores de recursión
+
+### Versión 1.0 - Base
+- Juego funcional con CPU estratégica
+- Sistema de dados para determinar quién empieza
+- Interfaz de consola básica
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+## 🙌 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir qué te gustaría cambiar.
+
+---
+
+## 📧 Contacto
+
+Carlos Andrés Nox - [@carlonox](https://github.com/carlonox)
+
+Proyecto Link: [https://github.com/carlonox/Tictactoe-en-CPP](https://github.com/carlonox/Tictactoe-en-CPP)
