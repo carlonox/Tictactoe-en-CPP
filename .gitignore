@@ -1,0 +1,15 @@
+# Compiled binaries
+*.exe
+*.out
+*.o
+*.obj
+
+# IDE files
+.vscode/
+*.vs
+*.vcxproj
+*.vcxproj.filters
+
+# OS generated files
+Thumbs.db
+.DS_Store

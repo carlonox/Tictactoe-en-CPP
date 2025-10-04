@@ -106,6 +106,6 @@ Las contribuciones son bienvenidas. Por favor, abre un issue primero para discut
 
 ## 📧 Contacto
 
-Carlos Andrés Nox - [@carlonox](https://github.com/carlonox)
+Carlos Javier Cuervo Baracaldo - [@carlonox](https://github.com/carlonox)
 
 Proyecto Link: [https://github.com/carlonox/Tictactoe-en-CPP](https://github.com/carlonox/Tictactoe-en-CPP)
