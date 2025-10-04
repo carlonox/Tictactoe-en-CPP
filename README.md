@@ -1,111 +1,122 @@
-# 🎲 Triqui Inteligente con CPU Estratégica
+# Tic Tac Toe con Interfaz Gráfica y Chat
 
-> Implementación del clásico juego **Triqui (Tres en Raya)** en **C++**, con una **CPU que toma decisiones estratégicas** para ganar, bloquear o maximizar su puntaje. Incluye sistema de dados para decidir quién empieza. ¡Perfecto para aprender lógica de juego y algoritmos de toma de decisiones!
+Este proyecto es una implementación del juego clásico Tic Tac Toe (Tres en Raya) con una interfaz gráfica moderna y un sistema de chat integrado. El juego mantiene la inteligencia artificial del oponente CPU del juego original, pero ahora con una experiencia visual mejorada y la capacidad de comunicarse con otros jugadores.
 
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Console](https://img.shields.io/badge/Consola-Texto%20%F0%9F%96%A5-333333?style=for-the-badge)
-![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+## Características
 
-![Captura del juego en consola](https://via.placeholder.com/600x300/2c3e50/ffffff?text=Triqui+C%2B%2B+en+Consola)  
-*(Reemplaza con una captura real de tu juego en ejecución)*
+- Interfaz gráfica con estilo Frutiger Aero (estilo Windows XP/2000)
+- Juego contra CPU con inteligencia artificial de 4 niveles
+- Sistema de chat integrado para comunicación en tiempo real
+- Diseño MVC (Modelo-Vista-Controlador) para una arquitectura limpia y mantenible
+- Tablero interactivo con clics del mouse
 
----
+## Requisitos del Sistema
 
-## 📌 Descripción
+- Windows 10/11
+- Visual Studio 2022 o superior
+- CMake 3.10 o superior
+- SFML 2.5 o superior
 
-Este proyecto es una versión mejorada del juego Triqui, donde:
-- El jugador humano juega con **`X`**.
-- La CPU juega con **`O`**.
-- **¡Sistema de dados!** 🎲 Antes de iniciar, se lanzan dados virtuales para decidir aleatoriamente quién empieza.
-- La CPU sigue una **estrategia en 6 niveles**:
-  1. ✅ Gana si puede.
-  2. 🚫 Bloquea al jugador si está a punto de ganar.
-  3. 🎯 Toma la mejor jugada del oponente (mayor puntaje).
-  4. 🧠 Toma su propia mejor jugada.
-  5. 🎯 Elige la esquina superior izquierda (0,0) si está libre.
-  6. 🎲 Si todo falla, elige aleatoriamente.
+## Instalación de Dependencias
 
-**Mejoras recientes:**
-- 🎯 **Sistema de coordenadas intuitivo**: Coordenadas cartesianas (1,1) = esquina inferior izquierda
-- 🔄 **Manejo de turnos corregido**: El jugador debe ingresar coordenadas válidas antes de pasar el turno
-- 🛡️ **Validación de entradas**: Detección y manejo de entradas inválidas
-- 🐛 **Corrección de errores**: Solución de problemas de recursión y bucles infinitos
+### Instalar SFML
 
-Ideal para aprender lógica de programación, matrices, recursión y toma de decisiones en C++.
+1. Descarga SFML desde [https://www.sfml-dev.org/download.php](https://www.sfml-dev.org/download.php)
+2. Selecciona la versión compatible con tu compilador (Visual Studio)
+3. Extrae los archivos en una ubicación conocida (por ejemplo, `C:\SFML`)
 
----
+### Configurar Variables de Entorno
 
-## 🛠️ Tecnologías Utilizadas
+1. Agrega la ruta de los binarios de SFML a tu PATH:
+   - `C:\SFML\bin` (o la ruta donde extrajiste SFML)
 
-- **Lenguaje**: C++ (estándar)
-- **Compilador**: GCC, Clang, MSVC (cualquiera compatible)
-- **Librerías estándar**: `<iostream>`, `<vector>`, `<ctime>`, `<cstdlib>`, `<cstdio>`
-- **Plataforma**: Consola (multiplataforma: Windows, Linux, macOS)
+## Compilación
 
----
+### Método 1: Usando el script de compilación
 
-## 🚀 Cómo Compilar y Ejecutar
+```bash
+build.bat
+```
 
-### Requisitos
-- Compilador de C++ (g++, clang++, etc.)
-- Sistema operativo: Windows, Linux o macOS
+### Método 2: Compilación manual
 
-### Pasos
+```bash
+mkdir build
+cd build
+cmake .. -G "Visual Studio 17 2022"
+cmake --build . --config Release
+```
 
-1. Clona el repositorio (o copia el archivo `.cpp`):
-   ```bash
-    git clone https://github.com/carlonox/Tictactoe-en-CPP.git
-    cd Tictactoe-en-CPP
+## Ejecución
 
-2. Compila el programa:
-   ```bash
-   g++ -o tictactoe Cpp-Tictactoe.cpp
-   ```
+Después de compilar, ejecuta el juego:
 
-3. Ejecuta el juego:
-   ```bash
-   ./tictactoe
-   ```
+```bash
+build\Release\TicTacToe.exe
+```
 
-### Cómo jugar
-- El juego mostrará un tablero con coordenadas cartesianas
-- Ingresa las coordenadas como `x,y` donde:
-  - (1,1) es la esquina inferior izquierda
-  - (3,3) es la esquina superior derecha
-- El sistema de dados determina quién empieza
-- La CPU implementa una estrategia avanzada de 6 niveles
+## Cómo Jugar
 
----
+1. El juego comienza automáticamente después de lanzar los dados para determinar quién empieza
+2. Haz clic en una celda vacía para colocar tu ficha (X)
+3. La CPU (O) hará su movimiento automáticamente
+4. El primer jugador en conseguir tres en línea gana
+5. Usa el chat para comunicarte con otros jugadores (funcionalidad en desarrollo)
 
-## 📈 Mejoras Implementadas
+## Controles
 
-### Versión 2.0 - Sistema de Coordenadas Cartesiano
-- Implementación de coordenadas cartesianas intuitivas
-- Corrección del manejo de turnos
-- Validación mejorada de entradas del usuario
-- Corrección de errores de recursión
+- **Mouse**: Hacer clic en las celdas del tablero para hacer movimientos
+- **Teclado**: Escribir en el cuadro de chat y presionar Enter para enviar mensajes
 
-### Versión 1.0 - Base
-- Juego funcional con CPU estratégica
-- Sistema de dados para determinar quién empieza
-- Interfaz de consola básica
+## Estructura del Proyecto
 
----
+```
+TicTacToe-en-CPP/
+├── include/           # Archivos de cabecera
+├── src/               # Código fuente
+├── resources/         # Recursos (imágenes, fuentes, etc.)
+├── build/             # Archivos de compilación (generados)
+├── CMakeLists.txt     # Configuración de CMake
+├── build.bat          # Script de compilación para Windows
+└── README.md          # Este archivo
+```
 
-## 📄 Licencia
+## Arquitectura MVC
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+### Modelo
+- `GameModel`: Lógica del juego, reglas, verificación de victoria
+- `ChatModel`: Gestión de mensajes de chat y comunicación de red
 
----
+### Vista
+- `GameView`: Renderizado gráfico del tablero y elementos del juego
+- `ChatView`: Interfaz de usuario para el sistema de chat
 
-## 🙌 Contribuciones
+### Controlador
+- `Controller`: Coordinación entre modelo y vista, manejo de eventos
 
-Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir qué te gustaría cambiar.
+## Personalización
 
----
+### Cambiar el Estilo Frutiger Aero
 
-## 📧 Contacto
+Puedes modificar los colores en los archivos `GameView.cpp` y `ChatView.cpp`:
+- `backgroundColor`: Color de fondo principal
+- `cellColor`: Color de las celdas del tablero
+- `textColor`: Color del texto
+- `borderColor`: Color de los bordes
 
-Carlos Javier Cuervo Baracaldo - [@carlonox](https://github.com/carlonox)
+## Problemas Conocidos
 
-Proyecto Link: [https://github.com/carlonox/Tictactoe-en-CPP](https://github.com/carlonox/Tictactoe-en-CPP)
+1. La funcionalidad de red para el chat aún está en desarrollo
+2. Algunas configuraciones pueden requerir ajustes manuales de rutas
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, haz un fork del repositorio y envía un pull request con tus mejoras.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+
+## Autor
+
+Basado en el trabajo original de Carlos Javier Cuervo Baracaldo (Carlonox)

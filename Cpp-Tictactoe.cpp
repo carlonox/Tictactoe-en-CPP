@@ -6,6 +6,10 @@
 //              implementa una estrategia de 6 niveles para tomar decisiones.
 //              Incluye sistema de dados para determinar quién empieza.
 //
+// NOTA: Este archivo contiene la implementación original del juego en modo
+//       consola. Para la versión con interfaz gráfica y chat, consulte el
+//       nuevo código en el directorio src/ y los archivos en include/.
+//
 // Sistema de coordenadas: Coordenadas cartesianas donde (1,1) es la esquina 
 //                         inferior izquierda y (3,3) es la esquina superior derecha.
 // ===========================================================================
@@ -17,6 +21,7 @@
 #include <vector>       // Contenedores vector
 #include <ctime>        // Funciones de tiempo para números aleatorios
 #include <cstdio>       // Funciones de entrada/salida en C (scanf, printf)
+#include <cstring>      // Funciones de manipulación de cadenas
 
 // Constantes del juego
 const int FILAS = 3;                    // Número de filas del tablero
@@ -513,6 +518,10 @@ int main()
     cout << ("|        Proyecto de Programacion basica       |\n");
     cout << ("|                  Juego Triqui                |\n");
     cout << ("|                       :)                     |\n");
+    cout << ("================================================\n");
+    cout << ("|  NOTA: Este es el juego original en consola  |\n");
+    cout << ("|  Para la version grafica y con chat, ejecute |\n");
+    cout << ("|  el nuevo ejecutable generado en build/      |\n");
     cout << ("================================================\n");
     
     int modo;
