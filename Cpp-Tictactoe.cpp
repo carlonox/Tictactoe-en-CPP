@@ -445,13 +445,14 @@ void iniciarJuego(int modo)
             int movimientoValido = 0;
             while (!movimientoValido)
             {
-                printf("Jugador %c. Ingresa coordenadas (x,y) donde x=columna, y=fila.\n", jugadorActual);
+printf("Jugador %c. Ingresa coordenadas (x,y) donde x=columna, y=fila.\n", jugadorActual);
                 printf("Ejemplo: 1,1=esquina inferior izquierda, 3,3=esquina superior derecha: ");
                 
                 if (scanf("%d,%d", &x, &y) != 2)
                 {
                     printf("Formato incorrecto. Usa: x,y (ejemplo: 2,3)\n");
-                    while (getchar() != '\n'); // Limpiar buffer
+                    int c;
+                    while ((c = getchar()) != '\n' && c != EOF); // Limpiar buffer
                     continue;
                 }
                 
