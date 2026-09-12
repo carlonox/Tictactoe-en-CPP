@@ -1,111 +1,112 @@
-# 🎲 Triqui Inteligente con CPU Estratégica
+# Tic-Tac-Toe with a Strategic CPU
 
-> Implementación del clásico juego **Triqui (Tres en Raya)** en **C++**, con una **CPU que toma decisiones estratégicas** para ganar, bloquear o maximizar su puntaje. Incluye sistema de dados para decidir quién empieza. ¡Perfecto para aprender lógica de juego y algoritmos de toma de decisiones!
+> Implementation of the classic Tic-Tac-Toe game (known as "Triqui" or "Tres en Raya" in Spanish) in **C++**, with a **CPU that makes strategic decisions** to win, block, or maximize its score. Includes a dice system to decide who starts. A good exercise for learning game logic and decision-making algorithms.
 
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Console](https://img.shields.io/badge/Consola-Texto%20%F0%9F%96%A5-333333?style=for-the-badge)
+![Console](https://img.shields.io/badge/Console-Text-333333?style=for-the-badge)
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-![Captura del juego en consola](https://via.placeholder.com/600x300/2c3e50/ffffff?text=Triqui+C%2B%2B+en+Consola)  
-*(Reemplaza con una captura real de tu juego en ejecución)*
+![Console game screenshot](https://via.placeholder.com/600x300/2c3e50/ffffff?text=Tic-Tac-Toe+C%2B%2B+Console)  
+*(Replace this with a real screenshot of your game running)*
 
 ---
 
-## 📌 Descripción
+## Description
 
-Este proyecto es una versión mejorada del juego Triqui, donde:
-- El jugador humano juega con **`X`**.
-- La CPU juega con **`O`**.
-- **¡Sistema de dados!** 🎲 Antes de iniciar, se lanzan dados virtuales para decidir aleatoriamente quién empieza.
-- La CPU sigue una **estrategia en 6 niveles**:
-  1. ✅ Gana si puede.
-  2. 🚫 Bloquea al jugador si está a punto de ganar.
-  3. 🎯 Toma la mejor jugada del oponente (mayor puntaje).
-  4. 🧠 Toma su propia mejor jugada.
-  5. 🎯 Elige la esquina superior izquierda (0,0) si está libre.
-  6. 🎲 Si todo falla, elige aleatoriamente.
+This project is an improved version of the Tic-Tac-Toe game, where:
+- The human player plays with **`X`**.
+- The CPU plays with **`O`**.
+- **Dice system:** before starting, virtual dice are rolled to randomly decide who goes first.
+- The CPU follows a **6-tier strategy**:
+  1. Win if it can.
+  2. Block the player if they are about to win.
+  3. Take the opponent's best move (highest score).
+  4. Take its own best move.
+  5. Choose the top-left corner (0,0) if it is free.
+  6. If everything else fails, choose randomly.
 
-**Mejoras recientes:**
-- 🎯 **Sistema de coordenadas intuitivo**: Coordenadas cartesianas (1,1) = esquina inferior izquierda
-- 🔄 **Manejo de turnos corregido**: El jugador debe ingresar coordenadas válidas antes de pasar el turno
-- 🛡️ **Validación de entradas**: Detección y manejo de entradas inválidas
-- 🐛 **Corrección de errores**: Solución de problemas de recursión y bucles infinitos
+**Recent improvements:**
+- **Intuitive coordinate system**: Cartesian coordinates, (1,1) = bottom-left corner
+- **Fixed turn handling**: the player must enter valid coordinates before the turn passes
+- **Input validation**: detection and handling of invalid input
+- **Bug fixes**: resolved recursion problems and infinite loops
 
-Ideal para aprender lógica de programación, matrices, recursión y toma de decisiones en C++.
-
----
-
-## 🛠️ Tecnologías Utilizadas
-
-- **Lenguaje**: C++ (estándar)
-- **Compilador**: GCC, Clang, MSVC (cualquiera compatible)
-- **Librerías estándar**: `<iostream>`, `<vector>`, `<ctime>`, `<cstdlib>`, `<cstdio>`
-- **Plataforma**: Consola (multiplataforma: Windows, Linux, macOS)
+Ideal for learning programming logic, matrices, recursion, and decision-making in C++.
 
 ---
 
-## 🚀 Cómo Compilar y Ejecutar
+## Technologies Used
 
-### Requisitos
-- Compilador de C++ (g++, clang++, etc.)
-- Sistema operativo: Windows, Linux o macOS
+- **Language**: C++ (standard)
+- **Compiler**: GCC, Clang, MSVC (any compatible one)
+- **Standard libraries**: `<iostream>`, `<vector>`, `<ctime>`, `<cstdlib>`, `<cstdio>`
+- **Platform**: Console (cross-platform: Windows, Linux, macOS)
 
-### Pasos
+---
 
-1. Clona el repositorio (o copia el archivo `.cpp`):
+## How to Compile and Run
+
+### Requirements
+- A C++ compiler (g++, clang++, etc.)
+- Operating system: Windows, Linux, or macOS
+
+### Steps
+
+1. Clone the repository (or copy the `.cpp` file):
    ```bash
-    git clone https://github.com/carlonox/Tictactoe-en-CPP.git
-    cd Tictactoe-en-CPP
+   git clone https://github.com/carlonox/Tictactoe-en-CPP.git
+   cd Tictactoe-en-CPP
+   ```
 
-2. Compila el programa:
+2. Compile the program:
    ```bash
    g++ -o tictactoe Cpp-Tictactoe.cpp
    ```
 
-3. Ejecuta el juego:
+3. Run the game:
    ```bash
    ./tictactoe
    ```
 
-### Cómo jugar
-- El juego mostrará un tablero con coordenadas cartesianas
-- Ingresa las coordenadas como `x,y` donde:
-  - (1,1) es la esquina inferior izquierda
-  - (3,3) es la esquina superior derecha
-- El sistema de dados determina quién empieza
-- La CPU implementa una estrategia avanzada de 6 niveles
+### How to play
+- The game displays a board with Cartesian coordinates
+- Enter the coordinates as `x,y` where:
+  - (1,1) is the bottom-left corner
+  - (3,3) is the top-right corner
+- The dice system determines who starts
+- The CPU implements an advanced 6-tier strategy
 
 ---
 
-## 📈 Mejoras Implementadas
+## Implemented Improvements
 
-### Versión 2.0 - Sistema de Coordenadas Cartesiano
-- Implementación de coordenadas cartesianas intuitivas
-- Corrección del manejo de turnos
-- Validación mejorada de entradas del usuario
-- Corrección de errores de recursión
+### Version 2.0 - Cartesian Coordinate System
+- Implementation of intuitive Cartesian coordinates
+- Fixed turn handling
+- Improved validation of user input
+- Fixed recursion bugs
 
-### Versión 1.0 - Base
-- Juego funcional con CPU estratégica
-- Sistema de dados para determinar quién empieza
-- Interfaz de consola básica
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+### Version 1.0 - Base
+- Working game with a strategic CPU
+- Dice system to determine who starts
+- Basic console interface
 
 ---
 
-## 🙌 Contribuciones
+## License
 
-Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir qué te gustaría cambiar.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📧 Contacto
+## Contributing
+
+Contributions are welcome. Please open an issue first to discuss what you would like to change.
+
+---
+
+## Contact
 
 Carlos Javier Cuervo Baracaldo - [@carlonox](https://github.com/carlonox)
 
-Proyecto Link: [https://github.com/carlonox/Tictactoe-en-CPP](https://github.com/carlonox/Tictactoe-en-CPP)
+Project link: [https://github.com/carlonox/Tictactoe-en-CPP](https://github.com/carlonox/Tictactoe-en-CPP)

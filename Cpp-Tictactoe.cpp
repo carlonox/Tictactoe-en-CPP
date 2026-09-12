@@ -1,37 +1,37 @@
 // ===========================================================================
-// JUEGO TRIQUI (TRES EN RAYA) CON CPU INTELIGENTE
+// TIC-TAC-TOE (TRIQUI) GAME WITH A STRATEGIC CPU
 // ===========================================================================
-// Autor: Carlos Javier Cuervo Baracaldo (Carlonox)
-// Descripción: Implementación del clásico juego Triqui con una CPU que 
-//              implementa una estrategia de 6 niveles para tomar decisiones.
-//              Incluye sistema de dados para determinar quién empieza.
+// Author: Carlos Javier Cuervo Baracaldo (Carlonox)
+// Description: Implementation of the classic Tic-Tac-Toe game with a CPU that 
+//              follows a 6-tier strategy to make its decisions.
+//              Includes a dice system to determine who starts.
 //
-// Sistema de coordenadas: Coordenadas cartesianas donde (1,1) es la esquina 
-//                         inferior izquierda y (3,3) es la esquina superior derecha.
+// Coordinate system: Cartesian coordinates where (1,1) is the bottom-left 
+//                    corner and (3,3) is the top-right corner.
 // ===========================================================================
 
-// Librerías estándar de C++
-#include <iostream>     // Entrada/salida estándar
-#include <stdlib.h>     // Funciones estándar como srand() y rand()
-#include <process.h>    // Funciones de proceso (getpid())
-#include <vector>       // Contenedores vector
-#include <ctime>        // Funciones de tiempo para números aleatorios
-#include <cstdio>       // Funciones de entrada/salida en C (scanf, printf)
+// Standard C++ libraries
+#include <iostream>     // Standard input/output
+#include <stdlib.h>     // Standard functions such as srand() and rand()
+#include <process.h>    // Process functions (getpid())
+#include <vector>       // Vector containers
+#include <ctime>        // Time functions for random numbers
+#include <cstdio>       // C input/output functions (scanf, printf)
 
-// Constantes del juego
-const int FILAS = 3;                    // Número de filas del tablero
-const int COLUMNAS = 3;                 // Número de columnas del tablero
-const int TAMANO_MATRIZ = FILAS * COLUMNAS;  // Tamaño total del tablero
-const char JUGADOR_X = 'X';             // Símbolo del jugador humano
-const char JUGADOR_O = 'O';             // Símbolo de la CPU
-const char JUGADOR_CPU_X = JUGADOR_X;   // Alias para el jugador X de la CPU
-const char JUGADOR_CPU_O = JUGADOR_O;   // Alias para el jugador O de la CPU
-const char ESPACIO_VACIO = ' ';         // Carácter para espacios vacíos
-const int CONTEO_PARA_GANAR = 3;        // Número de piezas en línea para ganar
+// Game constants
+const int FILAS = 3;                    // Number of board rows
+const int COLUMNAS = 3;                 // Number of board columns
+const int TAMANO_MATRIZ = FILAS * COLUMNAS;  // Total board size
+const char JUGADOR_X = 'X';             // Human player symbol
+const char JUGADOR_O = 'O';             // CPU symbol
+const char JUGADOR_CPU_X = JUGADOR_X;   // Alias for the CPU's X player
+const char JUGADOR_CPU_O = JUGADOR_O;   // Alias for the CPU's O player
+const char ESPACIO_VACIO = ' ';         // Character for empty spaces
+const int CONTEO_PARA_GANAR = 3;        // Number of pieces in a line needed to win
 
-// Opciones del menú principal
-const int JUGADOR_CPU = 1;              // Opción para jugar contra CPU
-const int SALIR = 2;                    // Opción para salir del juego
+// Main menu options
+const int JUGADOR_CPU = 1;              // Option to play against the CPU
+const int SALIR = 2;                    // Option to quit the game
 
 using namespace std;
 
@@ -53,20 +53,20 @@ void limpiarTablero(char tablero[FILAS][COLUMNAS])
     }
 }
 
-// CORREGIDO: Imprime el tablero con Y creciendo de abajo hacia arriba
+// FIXED: Prints the board with Y growing from bottom to top
 void imprimirTablero(char tablero[FILAS][COLUMNAS])
 {
     printf("\n");
     int fila;
     int col;
     
-    // Imprimir de arriba hacia abajo, pero mostrando números Y de mayor a menor
-    // fila 0 del arreglo = Y=3 (arriba)
-    // fila 1 del arreglo = Y=2 (medio)
-    // fila 2 del arreglo = Y=1 (abajo)
+    // Print from top to bottom, but showing Y numbers from highest to lowest
+    // array row 0 = Y=3 (top)
+    // array row 1 = Y=2 (middle)
+    // array row 2 = Y=1 (bottom)
     for (fila = 0; fila < FILAS; fila++)
     {
-        printf("%d ", FILAS - fila); // Muestra 3, 2, 1
+        printf("%d ", FILAS - fila); // Shows 3, 2, 1
         for (col = 0; col < COLUMNAS; col++)
         {
             printf("|%c", tablero[fila][col]);
@@ -74,11 +74,11 @@ void imprimirTablero(char tablero[FILAS][COLUMNAS])
         cout<<"|\n";
     }
     
-    // Imprimir encabezado de columnas (X) en la parte inferior
+    // Print the column header (X) at the bottom
     printf("  ");
     for (col = 0; col < COLUMNAS; col++)
     {
-        printf(" %d", col + 1); // Muestra 1, 2, 3
+        printf(" %d", col + 1); // Shows 1, 2, 3
     }
     printf("\n");
 }
@@ -88,7 +88,7 @@ int coordenadasVacias(int fila, int col, char tablero[FILAS][COLUMNAS])
     return tablero[fila][col] == ESPACIO_VACIO;
 }
 
-// Devuelve 1 si se colocó exitosamente, 0 si no
+// Returns 1 if the piece was placed successfully, 0 if not
 int colocarPieza(int fila, int col, char pieza, char tablero[FILAS][COLUMNAS])
 {
     if (fila < 0 || fila >= FILAS)
@@ -112,7 +112,7 @@ int colocarPieza(int fila, int col, char pieza, char tablero[FILAS][COLUMNAS])
     return 1;
 }
 
-// CORREGIDO: Funciones de conteo con parámetros en orden correcto (fila, col)
+// FIXED: Counting functions with parameters in the correct order (row, col)
 int contarHaciaArriba(int fila, int col, char jugador, char tablero[FILAS][COLUMNAS])
 {
     int filaInicio = (fila - CONTEO_PARA_GANAR >= 0) ? fila - CONTEO_PARA_GANAR + 1 : 0;
@@ -269,7 +269,7 @@ void coordenadasParaGanar(char jugador, char tableroOriginal[FILAS][COLUMNAS], i
             clonarMatriz(tableroOriginal, copiaTablero);
             if (coordenadasVacias(fila, col, tableroOriginal))
             {
-                copiaTablero[fila][col] = jugador; // Colocar directamente sin función
+                copiaTablero[fila][col] = jugador; // Place directly without a helper function
                 if (comprobarSiGana(jugador, copiaTablero))
                 {
                     *filaDestino = fila;
@@ -334,7 +334,7 @@ void coordenadasParaMayorPuntaje(char jugador, char tableroOriginal[FILAS][COLUM
             {
                 continue;
             }
-            // Colocar directamente sin función
+            // Place directly without a helper function
             copiaTablero[fila][col] = jugador;
             int conteoTemporal = contarSinSaberCoordenadas(jugador, copiaTablero);
             if (conteoTemporal > conteoMayor)
@@ -355,7 +355,7 @@ void elegirCoordenadasCpu(char jugador, char tablero[FILAS][COLUMNAS], int* fila
     int fila, col, conteoJugador, conteoOponente;
     char oponente = oponenteDe(jugador);
     
-    // 1. Ganar si se puede
+    // 1. Win if possible
     coordenadasParaGanar(jugador, tablero, &fila, &col);
     if (fila != -1 && col != -1)
     {
@@ -364,7 +364,7 @@ void elegirCoordenadasCpu(char jugador, char tablero[FILAS][COLUMNAS], int* fila
         return;
     }
     
-    // 2. Bloquear al oponente
+    // 2. Block the opponent
     coordenadasParaGanar(oponente, tablero, &fila, &col);
     if (fila != -1 && col != -1)
     {
@@ -373,7 +373,7 @@ void elegirCoordenadasCpu(char jugador, char tablero[FILAS][COLUMNAS], int* fila
         return;
     }
     
-    // 3 y 4. Tomar mejor movimiento
+    // 3 and 4. Take the best move
     coordenadasParaMayorPuntaje(jugador, tablero, &fila, &col, &conteoJugador);
     coordenadasParaMayorPuntaje(oponente, tablero, &fila, &col, &conteoOponente);
     if (conteoOponente > conteoJugador)
@@ -403,11 +403,11 @@ char jugadorAleatorio()
         dado1 = randomdado();
         dado2 = randomdado();
 
-        cout << "Lanzando dados.. " << endl;
-        cout << "El dado del CPU es: [" << dado1 << "] El dado del Humano es: [" << dado2 << "]"<< endl;
+        cout << "Rolling dice... " << endl;
+        cout << "CPU die: [" << dado1 << "] Human die: [" << dado2 << "]"<< endl;
         
         if (dado1 == dado2) {
-            cout << "Lanzando dados de nuevo... "<<endl;
+            cout << "Rolling dice again... "<<endl;
         }
     } while (dado1 == dado2);
 
@@ -425,14 +425,14 @@ void iniciarJuego(int modo)
 {
     if (modo  != JUGADOR_CPU )
     {
-        cout<<"Modo de juego no permitido";
+        cout<<"Game mode not allowed";
         return;
     }
     
     char tablero[FILAS][COLUMNAS];
     limpiarTablero(tablero);
     char jugadorActual = jugadorAleatorio();
-    printf("El jugador que inicia es: %c\n", jugadorActual);
+    printf("The starting player is: %c\n", jugadorActual);
     int x=0, y=0;
     int fila, col;
     
@@ -445,39 +445,39 @@ void iniciarJuego(int modo)
             int movimientoValido = 0;
             while (!movimientoValido)
             {
-printf("Jugador %c. Ingresa coordenadas (x,y) donde x=columna, y=fila.\n", jugadorActual);
-                printf("Ejemplo: 1,1=esquina inferior izquierda, 3,3=esquina superior derecha: ");
+printf("Player %c. Enter coordinates (x,y) where x=column, y=row.\n", jugadorActual);
+                printf("Example: 1,1=bottom-left corner, 3,3=top-right corner: ");
                 
                 if (scanf("%d,%d", &x, &y) != 2)
                 {
-                    printf("Formato incorrecto. Usa: x,y (ejemplo: 2,3)\n");
+                    printf("Invalid format. Use: x,y (example: 2,3)\n");
                     int c;
-                    while ((c = getchar()) != '\n' && c != EOF); // Limpiar buffer
+                    while ((c = getchar()) != '\n' && c != EOF); // Clear buffer
                     continue;
                 }
                 
-                // Limpiar el buffer de entrada
+                // Clear the input buffer
                 while (getchar() != '\n');
                 
-                // Validar rango
+                // Validate range
                 if (x < 1 || x > COLUMNAS || y < 1 || y > FILAS)
                 {
-                    printf("Coordenadas fuera de rango. Usa x e y entre 1 y %d\n", FILAS);
+                    printf("Coordinates out of range. Use x and y between 1 and %d\n", FILAS);
                     continue;
                 }
                 
-                // Convertir de coordenadas cartesianas a índices de arreglo
+                // Convert Cartesian coordinates to array indices
                 col = x - 1;           // x=1 -> col=0, x=2 -> col=1, x=3 -> col=2
                 fila = FILAS - y;      // y=1 -> fila=2, y=2 -> fila=1, y=3 -> fila=0
                 
-                // Verificar si está vacío
+                // Check whether the cell is empty
                 if (!coordenadasVacias(fila, col, tablero))
                 {
-                    printf("La posicion (%d,%d) ya esta ocupada. Intenta otra.\n", x, y);
+                    printf("Position (%d,%d) is already taken. Try another one.\n", x, y);
                     continue;
                 }
                 
-                // Si llegamos aquí, el movimiento es válido
+                // If we get here, the move is valid
                 movimientoValido = 1;
             }
         }
@@ -486,19 +486,19 @@ printf("Jugador %c. Ingresa coordenadas (x,y) donde x=columna, y=fila.\n", jugad
             elegirCoordenadasCpu(jugadorActual, tablero, &fila, &col);
         }
         
-        // Colocar la pieza (ya validada)
+        // Place the piece (already validated)
         tablero[fila][col] = jugadorActual;
         
         if (comprobarSiGana(jugadorActual, tablero))
         {
             imprimirTablero(tablero);
-            printf("El jugador %c gana\n", jugadorActual);
+            printf("Player %c wins\n", jugadorActual);
             return;
         }
         else if (empate(tablero))
         {
             imprimirTablero(tablero);
-            cout<<"Empate";
+            cout<<"It's a draw";
             return;
         }
         
@@ -510,13 +510,12 @@ int main()
 {
     srand(time(0));
     cout << ("================================================\n");
-    cout << ("|        Proyecto de Programacion basica       |\n");
-    cout << ("|                  Juego Triqui                |\n");
-    cout << ("|                       :)                     |\n");
+    cout << ("|          Basic Programming Project           |\n");
+    cout << ("|               Tic-Tac-Toe Game               |\n");
     cout << ("================================================\n");
     
     int modo;
-    cout << "1.Jugar (La CPU juega como: O)" << "\n2.Salir\nElige: " ;
+    cout << "1.Play (the CPU plays as: O)" << "\n2.Quit\nChoose: " ;
     cin >> modo;
     if (modo == SALIR)
     {
