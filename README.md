@@ -6,8 +6,7 @@
 ![Console](https://img.shields.io/badge/Console-Text-333333?style=for-the-badge)
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-![Console game screenshot](https://via.placeholder.com/600x300/2c3e50/ffffff?text=Tic-Tac-Toe+C%2B%2B+Console)  
-*(Replace this with a real screenshot of your game running)*
+![Captura real del juego en consola](docs/screenshot.png)
 
 ---
 
